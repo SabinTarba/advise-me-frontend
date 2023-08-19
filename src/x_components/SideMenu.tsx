@@ -18,7 +18,7 @@ export function SideMenu({ closeSideBar } : { closeSideBar: () => void}) {
             <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
               <span className="text-blue-600">Menu</span>
             </h2>
-            <div className="space-y-1 flex flex-col justify-between" style={{height: "70vh"}}>
+            <div className="space-y-1 flex flex-col justify-between">
               <div>
                 <Link to={"/browse"} onClick={() => { closeSideBar(); setMenuTab("1"); localStorage.setItem("menuTab", "1") }}> 
                   <Button className={`w-full mb-3 bg-white text-dark justify-start hover:bg-blue-800 hover:text-white ${menuTab === "1" ? "bg-blue-700 text-white" : "" }`}>

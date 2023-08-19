@@ -106,7 +106,7 @@ export function CreateNewPostForm({ posts, setPosts } : {posts: any, setPosts: a
   }
 
   return (
-      <AlertDialogContent>
+      <AlertDialogContent className="w-80">
         <AlertDialogHeader>
           <AlertDialogTitle>Create new post</AlertDialogTitle>
           <AlertDialogDescription>

@@ -49,7 +49,7 @@ function App() {
               <span className="text-gray-500">Already have an Account?</span> 
               <AlertDialog>
                 <AlertDialogTrigger className="p-2 bg-blue-700 rounded text-white">Log In</AlertDialogTrigger>
-                <AlertDialogContent>
+                <AlertDialogContent className="w-80">
                   <AlertDialogHeader>
                     <AlertDialogTitle>Log In</AlertDialogTitle>
                       <LogInForm />
@@ -62,7 +62,7 @@ function App() {
               <span className="text-gray-500">or</span>
               <AlertDialog>
                 <AlertDialogTrigger className="p-2 bg-gray-700 rounded text-white">Sign Up</AlertDialogTrigger>
-                <AlertDialogContent>
+                <AlertDialogContent className="w-80">
                   <AlertDialogHeader>
                     <AlertDialogTitle>Sign Up</AlertDialogTitle>
                       <RegisterForm/>

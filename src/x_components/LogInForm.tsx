@@ -52,7 +52,7 @@ export function LogInForm() {
           saveUserLoggedData(res.data.encryptedData);
           setToken(res.data.token);
           localStorage.setItem("menuTab", "1");
-          window.location.replace("/browse");
+          window.location.replace("/");
         } else {
           setAlertMessage(res.data.statusMessage);
           setAlertVariant(res.data.status);
