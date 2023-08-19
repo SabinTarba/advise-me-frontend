@@ -1,7 +1,7 @@
 import axios from "axios";
 import { BlobServiceClient } from "@azure/storage-blob";
 
-const BASE_URL = "advise-me-backend-production.up.railway.app/api/v1";
+const BASE_URL = "https://advise-me-backend-production.up.railway.app/api/v1";
 
 class API {
     async registerUser(user: any){
@@ -13,6 +13,7 @@ class API {
     }
 
     async logInUser(email: string, password: string){
+      console.log(`${BASE_URL}/auth/login`)
         return await axios.post(`${BASE_URL}/auth/login`, { email: email, password: password });
     }
 
