@@ -8,13 +8,21 @@ import {
   CardHeader,
 } from "@/components/ui/card"
 import defaultAvatar from "../assets/default_avatar.jpg"
-
 import { ClipLoader } from "react-spinners";
 import { timeAgo } from "@/x_utils/timeAgo";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarTrigger,
+} from "@/components/ui/menubar"
+import { BiDotsHorizontalRounded } from "react-icons/bi"
+import { getUserLoggedData } from "@/x_utils/auth";
 
 export function CardPost({ post } : {post: any}) {
   return (
-    <Card className="w-screen/2 md:w-[550px] h-[350px] flex flex-col justify-between gap-3">
+    <Card className="w-screen/2 md:w-[550px] h-[350px] flex flex-col justify-between gap-3 relative">
         <div>
       <CardHeader>
         <div className="flex items-center justify-between px-3 mb-3">
@@ -35,6 +43,19 @@ export function CardPost({ post } : {post: any}) {
             </div>
             <span className="text-gray-500">{timeAgo(post?.postedAt)}</span>
         </div>
+
+        {post?.postedBy?.id === getUserLoggedData()?.id &&
+          <Menubar className="absolute -top-1 right-1">
+            <MenubarMenu>
+              <MenubarTrigger className="cursor-pointer"><BiDotsHorizontalRounded className="text-blue-500 text-2xl"/></MenubarTrigger>
+              <MenubarContent>
+                <MenubarItem className="w-[100px]">
+                  Delete post
+                </MenubarItem>
+              </MenubarContent>
+            </MenubarMenu>
+          </Menubar>
+        }
         <p className="text-2xl font-semibold leading-none tracking-tight">{post?.title}</p>
         <CardDescription>[post tags]</CardDescription>
       </CardHeader>
