@@ -19,11 +19,25 @@ import {
 } from "@/components/ui/menubar"
 import { BiDotsHorizontalRounded } from "react-icons/bi"
 import { getUserLoggedData } from "@/x_utils/auth";
+import API_CALL from "@/x_utils/api";
 
-export function CardPost({ post } : {post: any}) {
+export function CardPost({ post, posts, setPosts, showToastAndToggleIt } : {post: any, posts: any, setPosts: any, showToastAndToggleIt: any}) {
+
+  const deletePost = (id: string) => {
+    API_CALL.deletePost(id).then((res) => {
+
+      if(res.data.status === "success"){
+        const newPosts = [...posts];
+        setPosts(newPosts.filter(newPost => newPost.id !== post.id));
+        showToastAndToggleIt("success", res.data.statusMessage);
+      }
+    })
+  }
+
   return (
     <Card className="w-screen/2 md:w-[550px] h-[350px] flex flex-col justify-between gap-3 relative">
         <div>
+
       <CardHeader>
         <div className="flex items-center justify-between px-3 mb-3">
             <div className="flex items-center justify-center gap-3">
@@ -49,7 +63,7 @@ export function CardPost({ post } : {post: any}) {
             <MenubarMenu>
               <MenubarTrigger className="cursor-pointer"><BiDotsHorizontalRounded className="text-blue-500 text-2xl"/></MenubarTrigger>
               <MenubarContent>
-                <MenubarItem className="w-[100px]">
+                <MenubarItem className="w-[100px]" onClick={() => deletePost(post?.id)}>
                   Delete post
                 </MenubarItem>
               </MenubarContent>

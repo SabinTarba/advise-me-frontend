@@ -8,6 +8,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { CreateNewPostForm } from '@/x_components/CreateNewPostForm'
+import { CustomToast } from '@/x_components/CustomToast'
 
 
 export function SkeletonDemo() {
@@ -35,7 +36,20 @@ const BrowsePage = () => {
   const [posts, setPosts] = useState<[any]>();
   const [loadingSkeleton, setLoadingSkeleton] = useState<boolean>(true);
   const [showCreatePostForm, setShowCreatePostForm] = useState<boolean>(false);
+  const [showToast, setShowToast] = useState<boolean>(false);
+  const [toastMessage, setToastMessage] = useState<string>();
+  const [toastVariant, setToastVariant] = useState<"fail" | "success">();
 
+  const showToastAndToggleIt = (variant: "fail" | "success", message: string) => {
+    setToastMessage(message);
+    setToastVariant(variant);
+    setShowToast(true);
+
+    setTimeout(() => {
+      setShowToast(false);
+    }, 3000);
+  }
+      
   useEffect(() => {
       API_CALL.getPosts().then(res => {
           setPosts(res.data);
@@ -47,7 +61,7 @@ const BrowsePage = () => {
     
     <div className="container mt-5 flex justify-center overflow-y-auto ... no-scrollbar" style={{ height: "85vh" }}>
       <div className="flex flex-col gap-5">
-        
+       {showToast && <CustomToast description={toastMessage} variant={toastVariant}/>}
         {loadingSkeleton ? 
         <>
           <SkeletonDemo/>
@@ -63,7 +77,7 @@ const BrowsePage = () => {
               {showCreatePostForm && <CreateNewPostForm posts={posts} setPosts={setPosts}/>}
             </AlertDialog>
           
-          {posts?.map(post => <CardPost key={post?.id} post={post} />)}
+          {posts?.map(post => <CardPost key={post?.id} post={post} posts={posts} setPosts={setPosts} showToastAndToggleIt={showToastAndToggleIt}/>)}
         </div>
         }
 

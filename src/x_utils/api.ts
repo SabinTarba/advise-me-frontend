@@ -2,6 +2,7 @@ import axios from "axios";
 import { BlobServiceClient } from "@azure/storage-blob";
 
 const BASE_URL = "https://advise-me-backend-production.up.railway.app/api/v1";
+//const BASE_URL = "http://localhost:8080/api/v1";
 
 class API {
     async registerUser(user: any){
@@ -31,6 +32,10 @@ class API {
 
     async createPost(postInfo: any){
       return await axios.post(`${BASE_URL}/posts`, postInfo, {headers: {"token": localStorage.getItem("token")}});
+    }
+
+    async deletePost(id: string){
+      return await axios.delete(`${BASE_URL}/posts/${id}`, {headers: {"token": localStorage.getItem("token")}});
     }
 
     async uploadImage(file: File) {
