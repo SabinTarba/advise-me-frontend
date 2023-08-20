@@ -35,7 +35,7 @@ export function CardPost({ post, posts, setPosts, showToastAndToggleIt } : {post
   }
 
   return (
-    <Card className="w-screen/2 md:w-[550px] h-[350px] flex flex-col justify-between gap-3 relative">
+    <Card className="w-[300px] md:w-[550px] h-[350px] flex flex-col justify-between gap-3 relative">
         <div>
 
       <CardHeader>
