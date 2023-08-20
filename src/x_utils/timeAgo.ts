@@ -8,5 +8,5 @@ TimeAgo.addDefaultLocale(en);
 const timeAgoConverter = new TimeAgo('en-US')
 
 export function timeAgo(date: string){
-    return timeAgoConverter.format(new Date(date), 'round')
+    return timeAgoConverter.format(new Date(date), 'mini')
 }
