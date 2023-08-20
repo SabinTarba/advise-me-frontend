@@ -288,7 +288,7 @@ export default function ProfilePage({ setUserName, setProfilePicture } : {setUse
               </div>
             </div>
           </div>
-          {loadingButton && <LoadingButton className="w-[100px] md:w-[250px]"/>}
+          {loadingButton && <LoadingButton className="w-[100px] md:w-[250px] absolute top-[60px] right-5 md:relative"/>}
           {!loadingButton && <Button type="submit" className="w-[100px] md:w-[250px] absolute top-[60px] right-5 md:relative">Update profile</Button>}
         </form>
       </Form>
