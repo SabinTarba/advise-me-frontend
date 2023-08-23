@@ -38,6 +38,14 @@ class API {
       return await axios.delete(`${BASE_URL}/posts/${id}`, {headers: {"token": localStorage.getItem("token")}});
     }
 
+    async getUserById(id: string){
+      return await axios.get(`${BASE_URL}/users/${id}`, {headers: {"token": localStorage.getItem("token")}});
+    }
+
+    async getPostsByUserId(userId: string){
+      return await axios.get(`${BASE_URL}/posts/user/${userId}`, {headers: {"token": localStorage.getItem("token")}});
+    }
+
     async uploadImage(file: File) {
         try {
             let storageAccount = "sabin2001";

@@ -21,6 +21,7 @@ import BrowsePage from "./x_pages/BrowsePage";
 import ProfilePage from "./x_pages/ProfilePage";
 import { ClipLoader } from "react-spinners";
 import { AiOutlineMenu } from "react-icons/ai";
+import UserProfile from "./x_pages/UserProfile";
 
 function App() {
 
@@ -103,6 +104,7 @@ function App() {
                 <Route path="*" index element={<BrowsePage />} />
                 <Route path="/browse" element={<BrowsePage />} />
                 <Route path="/profile" element={<ProfilePage setUserName={setUserName} setProfilePicture={setProfilePicture}/>} />
+                <Route path="/user/:encryptedUserId" element={<UserProfile />} />
             </Routes>
         </div>
 

@@ -20,8 +20,12 @@ import {
 import { BiDotsHorizontalRounded } from "react-icons/bi"
 import { getUserLoggedData } from "@/x_utils/auth";
 import API_CALL from "@/x_utils/api";
+import { useNavigate } from "react-router-dom";
+import { encrypt } from "@/x_utils/crypto";
 
-export function CardPost({ post, posts, setPosts, showToastAndToggleIt } : {post: any, posts: any, setPosts: any, showToastAndToggleIt: any}) {
+export function CardPost({ post, posts, setPosts, showToastAndToggleIt } : {post: any, posts?: any | undefined, setPosts?: any | undefined, showToastAndToggleIt?: any | undefined}) {
+
+  const navigate = useNavigate();
 
   const deletePost = (id: string) => {
     API_CALL.deletePost(id).then((res) => {
@@ -37,10 +41,9 @@ export function CardPost({ post, posts, setPosts, showToastAndToggleIt } : {post
   return (
     <Card className="w-[300px] md:w-[550px] h-[350px] flex flex-col justify-between gap-3 relative">
         <div>
-
       <CardHeader>
         <div className="flex items-center justify-between px-3 mb-3">
-            <div className="flex items-center justify-center gap-3">
+            <div className="flex items-center justify-center gap-3 cursor-pointer" onClick={() => navigate(`/user/${encrypt(post?.postedBy?.id)}`)}>
                  <Avatar>
                     <AvatarImage alt="Profile" loading="lazy" src={post?.postedBy?.profilePicture ? `https://sabin2001.blob.core.windows.net/profilepics/${post?.postedBy?.profilePicture}` : defaultAvatar}/>
                     <AvatarFallback>
@@ -53,7 +56,7 @@ export function CardPost({ post, posts, setPosts, showToastAndToggleIt } : {post
                         />
                   </AvatarFallback>
                 </Avatar>
-                <h2 className="text-gray-700">{post?.postedBy?.name}</h2>
+                <h2 className="text-gray-700 font-semibold"><span className="font-bold text-blue-800">@ </span>{post?.postedBy?.name}</h2>
             </div>
             <span className="text-gray-500">{timeAgo(post?.postedAt)}</span>
         </div>
