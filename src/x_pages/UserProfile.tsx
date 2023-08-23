@@ -80,8 +80,8 @@ const UserProfile = () => {
                     />
                     <div className="flex flex-col gap-3">
                         <span className="font-bold text-2xl">{user?.name}</span>
-                        <span className="text-blue-600 text-xs md:text-xl flex gap-1 hover:underline">{user?.url1 && <AiOutlineLink/>}<a rel="noreferrer" target="_blank" href={user?.url1}>{user?.url1}</a></span>
-                        <span className="text-blue-600 text-xs md:text-xl flex gap-1 hover:underline">{user?.url2 && <AiOutlineLink/>}<a rel="noreferrer" target="_blank" href={user?.url2}>{user?.url2}</a></span>
+                        <span className="text-blue-600 text-sm md:text-base flex gap-1 hover:underline">{user?.url1 && <AiOutlineLink/>}<a rel="noreferrer" target="_blank" href={user?.url1}>{user?.url1}</a></span>
+                        <span className="text-blue-600 text-sm md:text-base flex gap-1 hover:underline">{user?.url2 && <AiOutlineLink/>}<a rel="noreferrer" target="_blank" href={user?.url2}>{user?.url2}</a></span>
                         <div className="flex gap-5 items-center">
                             {!loadingUser && <span className="text-gray-800">{user?.totalPosts === 0 ? "No posts" : user?.totalPosts === 1 ? "1 post" : `${user?.totalPosts} posts`}</span>}
                             {getUserLoggedData()?.id === userId && <Link to={"/profile"} onClick={() => localStorage.setItem("menuTab", "2")}><Button variant="outline">Edit profile</Button></Link>}
